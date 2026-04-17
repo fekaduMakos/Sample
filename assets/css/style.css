@@ -33,20 +33,13 @@
 body {
     background-color: var(--bg-body);
     color: var(--text-primary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
     transition: background-color var(--transition), color var(--transition);
 }
 
 .page-wrapper {
     width: 100%;
-    max-width: 1300px;
+    min-height: 100vh;
     background: var(--bg-card);
-    border-radius: 30px;
-    box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;
     padding-bottom: 40px;
