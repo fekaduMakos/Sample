@@ -2,11 +2,11 @@
    CSS VARIABLES & THEME SYSTEM
    ============================== */
 :root {
-    --primary: #5d78ff;
-    --primary-dark: #4a63e0;
-    --secondary: #a78bfa;
+    --primary: #7c3aed;
+    --primary-dark: #6d28d9;
+    --secondary: #c4b5fd;
     --accent: #f59e0b;
-    --gradient: linear-gradient(135deg, #5d78ff, #a78bfa);
+    --gradient: linear-gradient(135deg, #7c3aed, #c4b5fd);
 
     /* Light mode */
     --bg: #f8faff;
@@ -289,11 +289,12 @@ a { text-decoration: none; color: inherit; }
 }
 
 .hero-text h1 {
-    font-size: clamp(3rem, 6vw, 5rem);
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
     font-weight: 900;
-    line-height: 1.05;
+    line-height: 1.1;
     margin-bottom: 1rem;
     color: var(--text);
+    white-space: nowrap;
 }
 
 .hero-sub {
