@@ -1,9 +1,26 @@
 :root {
     --primary-blue: #5d78ff;
-    --dark-blue: #1a2b4b;
-    --text-gray: #6b7280;
-    --bg-light: #f8faff;
     --orbit-speed: 20s;
+    
+    /* Default - Light Mode */
+    --bg-body: #f8faff;
+    --bg-card: #ffffff;
+    --bg-secondary: #f8faff;
+    --text-primary: #1a2b4b;
+    --text-secondary: #6b7280;
+    --border-color: #dddddd;
+    --shadow: 0 25px 70px rgba(0, 0, 0, 0.07);
+    --transition: 0.3s;
+}
+
+[data-theme="dark"] {
+    --bg-body: #0a0c10;
+    --bg-card: #11141a;
+    --bg-secondary: #1a1e26;
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
 }
 
 * {
@@ -14,23 +31,26 @@
 }
 
 body {
-    background-color: var(--bg-light);
+    background-color: var(--bg-body);
+    color: var(--text-primary);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     padding: 20px;
+    transition: background-color var(--transition), color var(--transition);
 }
 
 .page-wrapper {
     width: 100%;
     max-width: 1300px;
-    background: white;
+    background: var(--bg-card);
     border-radius: 30px;
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.07);
+    box-shadow: var(--shadow);
     position: relative;
     overflow: hidden;
     padding-bottom: 40px;
+    transition: background var(--transition), box-shadow var(--transition);
 }
 
 header {
@@ -45,7 +65,7 @@ header {
 .logo {
     font-size: 24px;
     font-weight: 800;
-    color: var(--dark-blue);
+    color: var(--text-primary);
     letter-spacing: -1px;
 }
 
@@ -53,21 +73,49 @@ header {
     display: flex;
     list-style: none;
     gap: 30px;
+    align-items: center;
+}
+
+.nav-links link-item {
+    display: flex;
+    align-items: center;
 }
 
 .nav-links a {
     text-decoration: none;
-    color: var(--dark-blue);
+    color: var(--text-primary);
     font-size: 14px;
     font-weight: 500;
     opacity: 0.7;
-    transition: 0.3s;
+    transition: var(--transition);
     cursor: pointer;
 }
 
 .nav-links a:hover {
     opacity: 1;
     color: var(--primary-blue);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 18px;
+}
+
+.theme-toggle:hover {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
 }
 
 .btn-cv {
@@ -78,7 +126,7 @@ header {
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
-    transition: 0.3s;
+    transition: var(--transition);
 }
 
 .hero {
@@ -96,7 +144,7 @@ header {
 
 .hero-text h1 {
     font-size: 58px;
-    color: var(--dark-blue);
+    color: var(--text-primary);
     line-height: 1.1;
     margin-bottom: 15px;
 }
@@ -107,13 +155,13 @@ header {
 
 .hero-text .job {
     font-size: 22px;
-    color: var(--dark-blue);
+    color: var(--text-primary);
     font-weight: 500;
     margin-bottom: 20px;
 }
 
 .hero-text p {
-    color: var(--text-gray);
+    color: var(--text-secondary);
     max-width: 500px;
     line-height: 1.8;
     margin-bottom: 35px;
@@ -127,15 +175,15 @@ header {
 }
 
 .btn-about {
-    background: var(--dark-blue);
-    color: white;
+    background: var(--text-primary);
+    color: var(--bg-card);
     padding: 15px 35px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: 600;
     cursor: pointer;
     border: none;
-    transition: 0.3s;
+    transition: var(--transition);
 }
 
 .btn-about:hover {
@@ -148,9 +196,9 @@ header {
 }
 
 .socials a {
-    color: var(--dark-blue);
+    color: var(--text-primary);
     font-size: 20px;
-    transition: 0.3s;
+    transition: var(--transition);
     text-decoration: none;
     opacity: 0.6;
 }
@@ -180,8 +228,9 @@ header {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 8px solid white;
+    border: 8px solid var(--bg-card);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    transition: border var(--transition);
 }
 
 .orbit-track {
@@ -201,7 +250,8 @@ header {
     position: absolute;
     width: 65px;
     height: 65px;
-    background: white;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 16px;
     display: flex;
     align-items: center;
@@ -210,6 +260,7 @@ header {
     font-size: 22px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     animation: counter-spin var(--orbit-speed) linear infinite;
+    transition: background var(--transition), border var(--transition);
 }
 
 .ai {
@@ -259,7 +310,7 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(26, 43, 75, 0.9);
+    background: rgba(0, 0, 0, 0.7);
     display: none;
     justify-content: center;
     align-items: center;
@@ -269,7 +320,7 @@ header {
 }
 
 .modal-content {
-    background: white;
+    background: var(--bg-card);
     width: 100%;
     max-width: 850px;
     max-height: 90vh;
@@ -277,6 +328,8 @@ header {
     border-radius: 25px;
     position: relative;
     overflow-y: auto;
+    color: var(--text-primary);
+    transition: background var(--transition);
 }
 
 .close-modal {
@@ -285,11 +338,11 @@ header {
     right: 25px;
     font-size: 35px;
     cursor: pointer;
-    color: var(--text-gray);
+    color: var(--text-secondary);
 }
 
 .modal-title {
-    color: var(--dark-blue);
+    color: var(--text-primary);
     font-size: 32px;
     margin-bottom: 15px;
     border-bottom: 2px solid var(--primary-blue);
@@ -305,21 +358,22 @@ header {
 }
 
 .project-card {
-    background: #f8faff;
+    background: var(--bg-secondary);
     padding: 25px;
     border-radius: 15px;
     border-top: 5px solid var(--primary-blue);
+    transition: background var(--transition);
 }
 
 .project-card h3 {
-    color: var(--dark-blue);
+    color: var(--text-primary);
     margin-bottom: 10px;
     font-size: 19px;
 }
 
 .project-card p {
     font-size: 14px;
-    color: var(--text-gray);
+    color: var(--text-secondary);
     line-height: 1.6;
 }
 
@@ -332,11 +386,12 @@ header {
 }
 
 .role-section {
-    background: var(--dark-blue);
-    color: white;
+    background: var(--text-primary);
+    color: var(--bg-card);
     padding: 20px;
     border-radius: 15px;
     margin-top: 30px;
+    transition: background var(--transition), color var(--transition);
 }
 
 /* CONTACT SPECIFIC STYLES */
@@ -348,9 +403,10 @@ header {
 }
 
 .contact-form {
-    background: #f8faff;
+    background: var(--bg-secondary);
     padding: 25px;
     border-radius: 15px;
+    transition: background var(--transition);
 }
 
 .contact-form input,
@@ -358,10 +414,13 @@ header {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
-    border: 1px solid #ddd;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     outline: none;
     font-family: inherit;
+    color: var(--text-primary);
+    transition: background var(--transition), border var(--transition);
 }
 
 .btn-send {
@@ -373,11 +432,12 @@ header {
     cursor: pointer;
     font-weight: 700;
     width: 100%;
-    transition: 0.3s;
+    transition: var(--transition);
 }
 
 .btn-send:hover {
-    background: var(--dark-blue);
+    background: var(--text-primary);
+    color: var(--bg-card);
 }
 
 @media (max-width: 850px) {

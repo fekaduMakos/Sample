@@ -1,76 +1,58 @@
-/**
- * Premium Portfolio Core Logic
- * Author: Fekadu Markos
- * Standard: Professional 30-Year Developer Grade
- */
-
 function sendToGmail() {
     const name = document.getElementById('clientName').value;
     const message = document.getElementById('clientMessage').value;
     const myEmail = "fekemark6@gmail.com";
     
-    if (!name || !message) {
-        alert("Please provide your name and a brief message!");
+    if (name === "" || message === "") {
+        alert("Please fill in your name and message!");
         return;
     }
 
-    const subject = encodeURIComponent(`Professional Inquiry from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\n\nProject Details:\n${message}`);
+    const subject = encodeURIComponent("Project Inquiry from " + name);
+    const body = encodeURIComponent("Name: " + name + "\n\nMessage:\n" + message);
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${myEmail}&su=${subject}&body=${body}`;
     
     window.open(gmailUrl, '_blank');
 }
 
 function openModal(id) {
-    const modal = document.getElementById(id);
-    modal.style.display = 'flex';
-    modal.style.opacity = '0';
-    
-    // Smooth transition
-    setTimeout(() => {
-        modal.style.transition = 'opacity 0.5s ease';
-        modal.style.opacity = '1';
-    }, 10);
+    document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none');
+    document.getElementById(id).style.display = 'flex';
 }
 
 function closeModal(id) {
-    const modal = document.getElementById(id);
-    modal.style.opacity = '0';
-    
-    setTimeout(() => {
-        modal.style.display = 'none';
-    }, 500);
+    document.getElementById(id).style.display = 'none';
 }
 
-// Close modal on background click
-window.addEventListener('click', (event) => {
-    if (event.target.classList.contains('modal-overlay')) {
-        closeModal(event.target.id);
+window.onclick = function(event) {
+    if (event.target.className === 'modal-overlay') {
+        event.target.style.display = 'none';
     }
-});
+}
 
-// Simple Entrance Animations
-document.addEventListener('DOMContentLoaded', () => {
-    const heroText = document.querySelector('.hero-text');
-    const heroImage = document.querySelector('.hero-image-container');
+/** Theme Logic **/
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     
-    if (heroText) {
-        heroText.style.opacity = '0';
-        heroText.style.transform = 'translateX(-50px)';
-        setTimeout(() => {
-            heroText.style.transition = 'all 1s ease-out';
-            heroText.style.opacity = '1';
-            heroText.style.transform = 'translateX(0)';
-        }, 100);
-    }
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateToggleIcon(newTheme);
+}
 
-    if (heroImage) {
-        heroImage.style.opacity = '0';
-        heroImage.style.transform = 'scale(0.9)';
-        setTimeout(() => {
-            heroImage.style.transition = 'all 1.2s ease-out';
-            heroImage.style.opacity = '1';
-            heroImage.style.transform = 'scale(1)';
-        }, 300);
+function updateToggleIcon(theme) {
+    const icon = document.querySelector('#themeToggle i');
+    if (!icon) return;
+    if (theme === 'dark') {
+        icon.className = 'fas fa-sun';
+    } else {
+        icon.className = 'fas fa-moon';
     }
+}
+
+// Initialize theme on load
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    updateToggleIcon(savedTheme);
 });
