@@ -241,8 +241,10 @@ function initHoverPreview() {
         // Hover Effect
         card.addEventListener('mouseenter', () => {
             previewImg.src = img.src;
-            preview.style.display = 'block';
-            setTimeout(() => preview.classList.add('active'), 10);
+            preview.style.display = 'flex';
+            // Trigger reflow
+            void preview.offsetWidth;
+            preview.classList.add('active');
         });
 
         card.addEventListener('mouseleave', () => {
@@ -251,7 +253,7 @@ function initHoverPreview() {
                 if (!preview.classList.contains('active')) {
                     preview.style.display = 'none';
                 }
-            }, 400);
+            }, 300);
         });
 
         // Click to Full Screen Pop-Up (Lightbox)

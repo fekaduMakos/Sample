@@ -1063,37 +1063,38 @@ a { text-decoration: none; color: inherit; }
    ============================== */
 .hover-preview {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
-    width: auto;
-    max-width: 90vw;
-    height: auto;
-    max-height: 90vh;
-    z-index: 9999;
-    background: transparent;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+    background: rgba(0,0,0,0.96);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     pointer-events: none;
     opacity: 0;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    border-radius: 12px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+    transition: opacity 0.3s ease;
     display: none;
+    align-items: center;
+    justify-content: center;
 }
 
 .hover-preview.active {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    display: block;
+    display: flex;
 }
 
 .hover-preview img {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 90vh;
-    border-radius: 12px;
-    display: block;
+    max-width: 95vw;
+    max-height: 95vh;
     object-fit: contain;
+    box-shadow: 0 0 80px rgba(0,0,0,0.8);
+    transform: scale(0.95);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hover-preview.active img {
+    transform: scale(1);
 }
 
 /* Modal Lightbox (for Click) — ENHANCED */
