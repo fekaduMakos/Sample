@@ -152,13 +152,17 @@ a { text-decoration: none; color: inherit; }
 .logo {
     display: flex;
     align-items: center;
+    text-decoration: none;
+    z-index: 10;
 }
 
 .logo-img {
-    height: 45px;
+    height: 32px;
+    max-width: 180px;
     width: auto;
     object-fit: contain;
     transition: var(--transition);
+    display: block;
 }
 
 .logo-img:hover {
