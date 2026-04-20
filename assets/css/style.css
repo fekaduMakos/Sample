@@ -150,13 +150,20 @@ a { text-decoration: none; color: inherit; }
 .navbar.scrolled .nav-container { padding: 16px 0; }
 
 .logo {
-    font-size: 1.8rem;
-    font-weight: 900;
-    color: var(--text);
-    letter-spacing: -2px;
+    display: flex;
+    align-items: center;
 }
 
-.logo span { color: var(--primary); }
+.logo-img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+    transition: var(--transition);
+}
+
+.logo-img:hover {
+    transform: scale(1.05);
+}
 
 .nav-links {
     display: flex;
@@ -944,8 +951,16 @@ a { text-decoration: none; color: inherit; }
     gap: 1rem;
 }
 
-.footer-logo { font-size: 1.5rem; font-weight: 900; color: var(--text); letter-spacing: -1px; }
-.footer-logo span { color: var(--primary); }
+.footer-logo {
+    display: flex;
+    align-items: center;
+}
+
+.footer-logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
 
 .footer p { color: var(--text-muted); font-size: 0.9rem; }
 
